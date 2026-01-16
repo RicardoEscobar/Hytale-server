@@ -29,3 +29,24 @@ To start the Hytale server in Linux Mint, use the following command in your term
 ```bash
 java -jar ~/Hytale/Server/HytaleServer.jar --assets ~/Hytale/Assets.zip
 ```
+
+# Start Hytale server in Linux Mint as a background process
+To start the Hytale server in Linux Mint as a background process, use the following command in your terminal:
+```bash
+nohup java -jar ~/Hytale/Server/HytaleServer.jar --assets ~/Hytale/Assets.zip > hytale_server.log 2>&1 &
+```
+
+# Kill Hytale server in Linux Mint if running as a background process
+To kill the Hytale server in Linux Mint if running as a background process, use the following command in your terminal:
+```bash
+pgrep -af HytaleServer.jar
+```
+This command will list the process ID (PID) of the Hytale server. You will see an output similar to this:
+```bash
+12345 java -jar /home/ricardo/Hytale/Server/HytaleServer.jar --assets ...
+```
+Where `12345` is the PID of the Hytale server process.
+Use the PID to kill the process:
+```bash
+kill <PID>
+```
