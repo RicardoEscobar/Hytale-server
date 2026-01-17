@@ -82,4 +82,3 @@ Now you can detach from the tmux session by pressing `Ctrl + B`, then `D`. To re
 ```bash
 tmux attach -t playit
 ```
-
