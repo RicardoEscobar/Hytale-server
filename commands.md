@@ -50,3 +50,36 @@ Use the PID to kill the process:
 ```bash
 kill <PID>
 ```
+
+# Making the authentication happen automatically in Linux Mint
+To make the authentication happen automatically in Linux Mint, you can create a configuration file with your credentials.
+First, run the server with:
+```bash
+java -jar ~/Hytale/Server/HytaleServer.jar --assets ~/Hytale/Assets.zip
+```
+Then when asques to authenticate:
+```bash
+/auth login device
+```
+This will generate a link to authenticate your device. Open the link in your browser and follow the instructions to complete the authentication process.
+After completing the authentication, if multiple profiles are available, select the desired profile by running:
+```bash
+/auth select <profile_number>
+```
+To avoid authenticating every time you start the server:
+```bash
+/auth persistence Encrypted
+```
+
+# Run playit.gg client in Linux Mint
+First, install tmux if you don't have it already. Then, start a new tmux session and run the playit.gg client inside it.
+```bash
+sudo apt install tmux
+tmux new -s playit
+playit
+```
+Now you can detach from the tmux session by pressing `Ctrl + B`, then `D`. To reattach to the session later, use:
+```bash
+tmux attach -t playit
+```
+
