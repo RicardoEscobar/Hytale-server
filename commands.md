@@ -82,3 +82,53 @@ Now you can detach from the tmux session by pressing `Ctrl + B`, then `D`. To re
 ```bash
 tmux attach -t playit
 ```
+
+# Backup Hytale server files in Linux Mint
+
+To backup Hytale server files in Linux Mint, you can use the following command in your terminal. This command will create backups of your server files at regular intervals.
+
+```bash
+java -Xms4G -Xmx4G -jar ~/Hytale/Server/HytaleServer.jar \
+    --assets ~/Hytale/Assets.zip \
+    --backup \
+    --backup-dir ~/Hytale/Server/backups/public/RickyRaton \
+    --backup-frequency 30 \
+    --backup-max-count 48
+```
+
+# Run Hytale server with backups in Linux Mint as a background process
+To run the Hytale server with backups in Linux Mint as a background process, use the following command in your terminal:
+
+```bash
+nohup java -Xms4G -Xmx4G -jar ~/Hytale/Server/HytaleServer.jar \
+    --assets ~/Hytale/Assets.zip \
+    --backup \
+    --backup-dir ~/Hytale/Server/backups/public/RickyRaton \
+    --backup-frequency 30 \
+    --backup-max-count 48 > hytale_server.log 2>&1 &
+```
+
+# To kill Hytale server running with backups in Linux Mint as a background process
+Just like before,
+To kill the Hytale server running with backups in Linux Mint as a background process, use the following command in your terminal:
+
+```bash
+pgrep -af HytaleServer.jar
+```
+This command will list the process ID (PID) of the Hytale server. You will see an output similar to this:
+```bash
+12345 java -Xms4G -Xmx4G -jar /home/ricardo/Hytale/Server/HytaleServer.jar --assets ...
+```
+Where `12345` is the PID of the Hytale server process.
+
+# Run another world
+
+```bash
+java -Xms4G -Xmx4G -jar ~/Hytale/Server/HytaleServer.jar \
+    --assets ~/Hytale/Assets.zip \
+    --backup \
+    --backup-dir ~/Hytale/Server/backups/public/MasterViper \
+    --backup-frequency 30 \
+    --backup-max-count 48
+```
+
