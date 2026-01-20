@@ -124,11 +124,11 @@ Where `12345` is the PID of the Hytale server process.
 # Run another world
 
 ```bash
-java -Xms4G -Xmx4G -jar ~/Hytale/Server/HytaleServer.jar \
+nohup java -Xms4G -Xmx4G -jar ~/Hytale/Server/HytaleServer.jar \
     --assets ~/Hytale/Assets.zip \
     --backup \
-    --backup-dir ~/Hytale/Server/backups/public/MasterViper \
+    --backup-dir ~/Hytale/Server/backups/public/Teidar \
     --backup-frequency 30 \
-    --backup-max-count 48
+    --backup-max-count 48 > hytale_server.log 2>&1 &
 ```
 
