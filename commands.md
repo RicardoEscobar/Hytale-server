@@ -13,15 +13,18 @@ downloading latest ("release" patchline) to "2026.01.17-4b0f30090.zip"
 validating checksum...
 successfully downloaded "release" patchline (version 2026.01.17-4b0f30090)
 ```
-After that, stop the Hytale server if it's running, and start it again to apply the update.
+After that, stop the Hytale server if it's running.
+
+# Update Hytale server files in Linux Mint
+`~/Hytale/2026.01.17-4b0f30090.zip` is the path to the downloaded Hytale server zip file and `~/Hytale/ServerRicky/` is the path to the Hytale server folder.
 Then unzip the downloaded file to update the server files:
 ```bash
 unzip -o ~/Hytale/2026.01.17-4b0f30090.zip -d ~/Hytale/ServerRicky/
 ```
-Or just unzip the files directly to the Server folder:
+Or just unzip from `2026.01.17-4b0f30090.zip` the files `HytaleServer.jar`, `HytaleServer.aot`, and `Assets.zip` directly to the Server folder `~/Hytale/ServerRicky/`:
 
 ```bash
-unzip -o ~/Hytale/2026.01.17-4b0f30090.zip "Server/HytaleServer.jar" "Server/HytaleServer.aot" -d ~/Hytale/ServerRicky/
+unzip -o ~/Hytale/2026.01.17-4b0f30090.zip "Server/HytaleServer.jar" "Server/HytaleServer.aot" "Assets.zip" -d ~/Hytale/ServerRicky/
 ```
 
 # Check the Hytale server version in Linux Mint
@@ -140,10 +143,10 @@ java -Xms4G -Xmx4G -jar ~/Hytale/Server/HytaleServer.jar \
 To run the Hytale server with backups in Linux Mint as a background process, use the following command in your terminal:
 
 ```bash
-nohup java -Xms4G -Xmx4G -jar ~/Hytale/Server/HytaleServer.jar \
+nohup java -Xms4G -Xmx4G -jar ~/Hytale/ServerRicky/HytaleServer.jar \
     --assets ~/Hytale/Assets.zip \
     --backup \
-    --backup-dir ~/Hytale/Server/backups/public/RickyRaton \
+    --backup-dir ~/Hytale/Server/backups \
     --backup-frequency 30 \
     --backup-max-count 48 > hytale_server.log 2>&1 &
 ```
