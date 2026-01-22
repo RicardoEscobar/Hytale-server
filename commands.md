@@ -150,15 +150,13 @@ java -Xms6G -Xmx10G -jar ~/Hytale/ServerRicky/HytaleServer.jar \
 To run the Hytale server with backups in Linux Mint as a background process, use the following command in your terminal:
 
 ```bash
-cd ~/Hytale
-nohup java -Xms6G -Xmx10G \
-    -XX:AOTCache=/home/ricardo/Hytale/Server/HytaleServer.aot \
-    -jar ~/Hytale/Server/HytaleServer.jar \
+cd ~/Hytale/ServerRicky
+nohup java -Xms6G -Xmx10G -XX:AOTCache=HytaleServer.aot -jar HytaleServer.jar \
     --assets ~/Hytale/Assets.zip \
     --backup \
-    --backup-dir ~/Hytale/Server/backups \
+    --backup-dir ~/Hytale/ServerRicky/backups \
     --backup-frequency 30 \
-    --backup-max-count 48 > hytale_server.log 2>&1 &
+    --backup-max-count 48 > hytale_server_ricky.log 2>&1 &
 ```
 
 # To kill Hytale server running with backups in Linux Mint as a background process
