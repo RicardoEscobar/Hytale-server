@@ -16,15 +16,14 @@ successfully downloaded "release" patchline (version 2026.01.17-4b0f30090)
 After that, stop the Hytale server if it's running.
 
 # Update Hytale server files in Linux Mint
-`~/Hytale/2026.01.17-4b0f30090.zip` is the path to the downloaded Hytale server zip file and `~/Hytale/ServerRicky/` is the path to the Hytale server folder.
-Then unzip the downloaded file to update the server files:
 ```bash
-unzip -o ~/Hytale/2026.01.17-4b0f30090.zip -d ~/Hytale/ServerRicky/
+cd ~/Hytale
+unzip -o 2026.01.17-4b0f30090.zip
 ```
-Or just unzip from `2026.01.17-4b0f30090.zip` the files `HytaleServer.jar`, `HytaleServer.aot`, and `Assets.zip` directly to the Server folder `~/Hytale/ServerRicky/`:
-
+After unzipping, you need to copy the files of the previous server installation to the new one to keep your world and configurations.
 ```bash
-unzip -o ~/Hytale/2026.01.17-4b0f30090.zip "Server/HytaleServer.jar" "Server/HytaleServer.aot" "Assets.zip" -d ~/Hytale/ServerRicky/
+cd ~/Hytale
+rsync -av --ignore-existing ServerRicky/ Server/
 ```
 
 # Check the Hytale server version in Linux Mint
@@ -131,19 +130,30 @@ ene 20 16:51:03 OptiPlex-3070 systemd[1]: Started playit.service - Playit Agent.
 To backup Hytale server files in Linux Mint, you can use the following command in your terminal. This command will create backups of your server files at regular intervals.
 
 ```bash
-java -Xms4G -Xmx4G -jar ~/Hytale/Server/HytaleServer.jar \
+cd ~/Hytale/ServerRicky
+java -Xms6G -Xmx10G -jar ~/Hytale/ServerRicky/HytaleServer.jar \
     --assets ~/Hytale/Assets.zip \
     --backup \
-    --backup-dir ~/Hytale/Server/backups/public/RickyRaton \
+    --backup-dir ~/Hytale/ServerRicky/backups \
     --backup-frequency 30 \
     --backup-max-count 48
 ```
+## Explanation of java options and backup parameters
+- `-Xms6G`: Sets the initial Java heap size to 6GB.
+- `-Xmx10G`: Sets the maximum Java heap size to 10GB.
+- `--backup`: Enables the backup feature.
+- `--backup-dir ~/Hytale/Server/backups/public/RickyRaton`: Specifies the directory where backups will be stored.
+- `--backup-frequency 30`: Sets the frequency of backups to every 30 minutes.
+- `--backup-max-count 48`: Sets the maximum number of backups to keep (up to 24 hours).
 
 # Run Hytale server with backups in Linux Mint as a background process
 To run the Hytale server with backups in Linux Mint as a background process, use the following command in your terminal:
 
 ```bash
-nohup java -Xms4G -Xmx4G -jar ~/Hytale/ServerRicky/HytaleServer.jar \
+cd ~/Hytale
+nohup java -Xms6G -Xmx10G \
+    -XX:AOTCache=/home/ricardo/Hytale/Server/HytaleServer.aot \
+    -jar ~/Hytale/Server/HytaleServer.jar \
     --assets ~/Hytale/Assets.zip \
     --backup \
     --backup-dir ~/Hytale/Server/backups \
